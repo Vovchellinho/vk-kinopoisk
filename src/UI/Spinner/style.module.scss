@@ -1,0 +1,37 @@
+.spinner {
+	padding-left: calc(-0.5rem / 2);
+	padding-right: calc(-0.5rem / 2);
+
+	&::before {
+		content: '';
+		display: inline-block;
+		width: 4rem;
+		height: 4rem;
+		--border-width: clamp(0.2em, 10%, 0.5em);
+		border-radius: 50%;
+		aspect-ratio: 1/1;
+		--mask: radial-gradient(
+		farthest-side,
+			transparent calc(100% - var(--border-width) - 0.5px),
+			#000 calc(100% - var(--border-width) + 0.5px)
+		);
+		mask: var(--mask);
+		background: 
+		linear-gradient(to top, rgba(251, 163, 29, 1), rgba(251, 163, 29, 0.5)) 100% 0/50% 100% no-repeat,
+		linear-gradient(rgba(251, 163, 29, 0.5) 50%, transparent 95%) 0 0/50% 100% no-repeat;
+	}
+
+	&.default::before {
+		border-color: #FFFFFF;
+	}
+
+	&.animate::before {
+			animation: button-spinner-border .85s linear infinite;
+	}
+}
+
+@keyframes button-spinner-border {
+	to {
+		transform: rotate(360deg);
+	}
+}

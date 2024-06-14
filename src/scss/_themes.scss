@@ -1,0 +1,45 @@
+@use 'colors' as *;
+
+html[data-theme="dark"] {
+	--background-color: #{$dark-background-color};
+	--nav-color: #{$dark-main-color};
+	
+	--text-color: #{$dark-text-color};
+	--link-color: #{$dark-link-color};
+	--extra-text-color: #{$dark-extra-text-color};
+
+	--button-color: #{$dark-button-color};
+	--button-text: #{$dark-button-text};
+	--hover-button-color: #{$dark-hover-button-color};
+	--hover-button-text: #{$dark-hover-button-text};
+
+	--input-color: #{$dark-input-color};
+	--input-text: #{$dark-input-text};
+	--input-border-color: #{$dark-input-border-color};
+	--focus-input-border-color: #{$dark-focus-input-border-color};
+
+	--thumb-color: #{$dark-thumb-color};
+	--bar-color: #{$dark-bar-color};
+}
+
+html[data-theme="light"] {
+	--background-color: #{$background-color};
+	--nav-color: #{$main-color};
+
+	--text-color: #{$text-color};
+	--link-color: #{$link-color};
+	--extra-text-color: #{$extra-text-color};
+
+	--button-color: #{$button-color};
+	--button-text: #{$button-text};
+	--hover-button-color: #{$hover-button-color};
+	--hover-button-text: #{$hover-button-text};
+
+	--input-color: #{$input-color};
+	--input-text: #{$input-text};
+	--input-border-color: #{$input-border-color};
+	--focus-input-border-color: #{$focus-input-border-color};
+
+	--thumb-color: #{$thumb-color};
+	--bar-color: #{$bar-color};
+}

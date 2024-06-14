@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styles from "./style.module.scss";
+import {
+	createContext,
+	useState,
+	useEffect
+} from "react";
+import type { TTheme } from "./types";
+import Header from "./components/Header";
+import {
+	BrowserRouter,
+	Routes,
+	Route
+} from "react-router-dom";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface IThemeContextProps {
+	theme: TTheme,
+	toggleTheme: (theme: TTheme) => void
+}
+
+export const ThemeContext = createContext<IThemeContextProps>({
+	theme: "dark",
+	toggleTheme: () => {}
+});
+
+const App = () => {
+	const [theme, setTheme] = useState<TTheme>("dark");
+
+	useEffect(() => {
+		document.documentElement.setAttribute("data-theme", theme);
+	}, [theme]);
+
+	return (
+		<div className={styles.app}>
+			<ThemeContext.Provider value={{theme, toggleTheme: setTheme}}>
+			<BrowserRouter>
+				<Header />
+				<Routes>
+					<Route path='/' element={<Home/>} />
+					<Route path='/favorites' element={<Favorites/>} />
+				</Routes>
+			</BrowserRouter>
+			</ThemeContext.Provider>
+		</div>
+	);
 }
 
 export default App;

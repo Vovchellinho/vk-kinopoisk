@@ -1,0 +1,37 @@
+@use "../../scss/themes" as *;
+
+.container {
+	display: flex;
+	width: 40px;
+	height: 20px;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+
+	> .thumb {
+		width: 15px;
+		height: 15px;
+		background-color: var(--thumb-color);
+		border-radius: 50%;
+		transition: margin-left 0.4s, background-color 0.4s;
+		z-index: 1;
+
+		&.thumb.slideToRight {
+			margin-left: calc(100% - 16px);
+		}
+		
+		&.thumb.slideToLeft {
+			margin-left: calc(2px);
+		}
+	}
+
+	> .bar {
+		position: absolute;
+		background-color: var(--bar-color);;
+		height: 17px;
+		border-radius: 50px;
+		width: 100%;
+		transition: background-color 0.4s;
+		z-index: 0;
+	}
+}

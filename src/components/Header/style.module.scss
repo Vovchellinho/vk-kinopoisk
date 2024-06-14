@@ -1,0 +1,7 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	background-color: var(--nav-color);
+	transition: color 0.4s, background-color 0.4s;
+}

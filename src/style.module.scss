@@ -1,0 +1,6 @@
+@use './scss/themes' as *;
+
+.app {
+	background-color: var(--background-color);
+	transition: background-color 0.4s;
+}
