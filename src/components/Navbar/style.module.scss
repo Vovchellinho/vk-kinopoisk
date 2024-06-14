@@ -1,3 +1,5 @@
+@use '../../scss/themes' as *;
+
 .container {
 	display: flex;
 	align-items: center;
@@ -14,6 +16,10 @@
 		a {
 			transition: color 0.4s;
 			color: var(--link-color);
+
+			&.active{
+				border-bottom: 1px solid var(--link-color);
+			}
 		}
 	}
 }

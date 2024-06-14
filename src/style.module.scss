@@ -1,6 +1,7 @@
 @use './scss/themes' as *;
 
 .app {
+	min-height: 100vh;
 	background-color: var(--background-color);
 	transition: background-color 0.4s;
 }

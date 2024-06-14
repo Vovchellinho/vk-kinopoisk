@@ -2,10 +2,11 @@ import {
 	useEffect,
 	useState
 } from "react";
-import API from "../../API";
-import type { TMovie } from "../../API/types";
-import Spinner from "../../UI/Spinner/Spinner";
-import Pagination from "../../UI/Pagination";
+import API from "@API/index";
+import type { TMovie } from "@API/types";
+import Spinner from "@UI/Spinner";
+import Pagination from "@UI/Pagination";
+import FilmList from "@components/FilmList";
 
 const Home = () => {
 	const [films, setFilms] = useState<TMovie[]>([]);
@@ -23,13 +24,12 @@ const Home = () => {
 				setFilms(data?.docs ?? []);
 				if (data?.pages && data.page) {
 					setPageInfo({
-						max: data.pages,
+						max: data.pages - 1,
 						current: data.page
 					})
 				}
 			},
 			error: (e) => {
-				console.log(e)
 			},
 			complete: () => {
 				setIsWait(false)
@@ -49,22 +49,17 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div>
-			Home
+		<section>
 			{ isWait ? 
 				<Spinner />
 				:
 				<>
-					<ul>
-						{films.map((film) => <li key={film.id}>
-							<span>{film.name}</span>
-						</li>)}
-					</ul>
+					<FilmList films={films} />
 					<Pagination max={pageInfo.max} current={pageInfo.current} onChange={getDataByPage} />
 				</>
 
 			}
-		</div>
+		</section>
 	);
 };
 

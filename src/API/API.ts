@@ -23,7 +23,7 @@ class API {
 			isError: false,
 			error: null
 		};
-		const cacheData = this.cacheGet.get(endpoint) as TMapDataEndpoint[K];
+		const cacheData = this.cacheGet.get(endpoint + getParams) as TMapDataEndpoint[K];
 		if (cache && cacheData) {
 				result.data = cacheData;
 				success(result);
@@ -42,7 +42,7 @@ class API {
 					result.data = dataJson;
 					success(result);
 					if (cache) {
-						this.cacheGet.set(endpoint, dataJson);
+						this.cacheGet.set(endpoint + getParams, dataJson);
 					}
 				} else {
 					if (response.status === 404) throw new Error('404, Not found');

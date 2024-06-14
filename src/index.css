@@ -2,12 +2,16 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Cuprum';
+	font-family: 'Cuprum', 'Sans-Serif';
 	-webkit-tap-highlight-color: transparent;
 }
 
 body {
 	min-width: 350px;
+}
+
+section {
+	padding: 10px;
 }
 
 a {
