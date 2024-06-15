@@ -22,10 +22,25 @@
 	
 			a {
 				transition: color 0.4s;
-				color: var(--link-color);
+				color: var(--link-color);	
+				position: relative;
 	
 				&.active{
 					border-bottom: 1px solid var(--link-color);
+				}
+
+				& > .number {
+					position: absolute;
+					display: flex;
+					width: 25px;
+					height: 25px;
+					font-size: 16px;
+					align-items: center;
+					justify-content: center;
+					right: -24px;
+					top: -12px;
+					border: 1px solid;
+					border-radius: 50%;
 				}
 			}
 		}

@@ -46,8 +46,6 @@ const Film = () => {
 						</div>
 						<h2>Название: {movie.name ?? movie.alternativeName}</h2>
 						<span>Рейтинг (imdb): {movie.rating.imdb === 0 ? 'н/д' : movie.rating.imdb}</span>
-						<span>Год премьеры: {movie.year}</span>
-						<p>{movie.description}</p>
 						<p>
 							Жанры:  
 							{
@@ -56,6 +54,8 @@ const Film = () => {
 								</span>)
 							}
 						</p>
+						<span>Год премьеры: {movie.year}</span>
+						<p className={styles.description}>{movie.description}</p>
 					</div>
 				</Preloader>
 			}

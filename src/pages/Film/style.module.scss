@@ -14,7 +14,7 @@
 		justify-content: center;
 
 		& > img {
-			height: 500px;
+			max-width: 350px;
 		}
 
 		& > .favoriteButton {
@@ -22,6 +22,10 @@
 			bottom: 5px;
 			right: 5px;
 		}
+	}
+
+	.description {
+		text-align: justify;
 	}
 
 }
