@@ -20,6 +20,8 @@ html[data-theme="dark"] {
 
 	--thumb-color: #{$dark-thumb-color};
 	--bar-color: #{$dark-bar-color};
+
+	--blur-color: #{$dark-blur-color};
 }
 
 html[data-theme="light"] {
@@ -42,4 +44,6 @@ html[data-theme="light"] {
 
 	--thumb-color: #{$thumb-color};
 	--bar-color: #{$bar-color};
+
+	--blur-color: #{$blur-color};
 }

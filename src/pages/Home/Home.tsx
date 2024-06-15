@@ -4,9 +4,10 @@ import {
 } from "react";
 import API from "@API/index";
 import type { TMovie } from "@API/types";
-import Spinner from "@UI/Spinner";
 import Pagination from "@UI/Pagination";
 import FilmList from "@components/FilmList";
+import styles from "./style.module.scss";
+import Preloader from "@UI/Preloader";
 
 const Home = () => {
 	const [films, setFilms] = useState<TMovie[]>([]);
@@ -29,10 +30,17 @@ const Home = () => {
 			error: (e) => {
 			},
 			complete: () => {
-				setIsWait(false)
+				setIsWait(false);
 			}
 		})
 	}
+
+	useEffect(() => {
+		window.scrollTo({ 
+			top: 0, 
+			behavior: "smooth" 
+		});
+	}, [isWait]);
 
 	useEffect(() => {
 		getData(currentPage);
@@ -44,15 +52,12 @@ const Home = () => {
 
 	return (
 		<section>
-			{ isWait ? 
-				<Spinner />
-				:
-				<>
+			<div className={styles.container}>
+				<Preloader wait={isWait}>
 					<FilmList films={films} />
-					<Pagination max={maxPage} current={currentPage} onChange={setCurrentPage} />
-				</>
-
-			}
+				</Preloader>
+				<Pagination max={maxPage} current={currentPage} onChange={setCurrentPage} />
+			</div>
 		</section>
 	);
 };
