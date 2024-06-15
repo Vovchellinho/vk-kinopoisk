@@ -10,7 +10,7 @@
 	text-align: center;
 	border: 1px solid var(--input-border-color);
 	border-radius: 5%;
-	transition: transform 0.3s;
+	transition: transform 0.3s, color 0.4s;
 	cursor: pointer;
 
 	&:hover {
