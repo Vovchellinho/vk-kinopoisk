@@ -1,0 +1,35 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	color: var(--text-color);
+	width: fit-content;
+	padding: 2px;
+	flex-wrap: wrap;
+	user-select: none;
+
+	& > li {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid var(--input-border-color);
+		min-width: 30px;
+		height: 30px;
+		padding: 0px 4px;
+		cursor: pointer;
+		transition: transfrom 0.3s;
+
+		&.active {
+			background-color: var(--input-border-color);
+		}
+
+		&.disabled {
+			opacity: 0.5;
+			cursor: default;
+		}
+
+		&:hover, :not(.disabled) {
+			transform: scale(1.02);
+		}
+	}
+}

@@ -3,6 +3,7 @@ import type {
 	TGetParams,
 	TMapDataEndpoint
 } from "./types";
+import { MapEndpoint } from "./types";
 
 class API {
 	private host = process.env.REACT_APP_API_HOST ?? '';
@@ -29,7 +30,7 @@ class API {
 				success(result);
 		} else {
 			try {
-				const response = await fetch(this.host + endpoint + getParams, {
+				const response = await fetch(this.host + MapEndpoint[endpoint] + getParams, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json;charset=utf-8',

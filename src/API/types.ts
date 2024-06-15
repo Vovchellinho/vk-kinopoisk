@@ -25,7 +25,13 @@ export type TError<K extends keyof TMapDataEndpoint> = TDataResult<TMapDataEndpo
 export type TGetParams<K extends keyof TMapDataEndpoint> = TQuery<K>;
 
 export type TMapDataEndpoint = {
-	'movie': TMovies;
+	'movies': TMovies;
+	'movie': TMovie;
+}
+
+export const MapEndpoint = {
+	'movies': 'movie',
+	'movie': 'movie'
 }
 
 export type TWithPaginate = {

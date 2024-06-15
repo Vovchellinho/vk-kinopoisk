@@ -10,23 +10,20 @@ import FilmList from "@components/FilmList";
 
 const Home = () => {
 	const [films, setFilms] = useState<TMovie[]>([]);
-	const [pageInfo, setPageInfo] = useState({
-		max: 0,
-		current: 0
-	});
+	const [currentPage, setCurrentPage] = useState(1);
+	const [maxPage, setMaxPage] = useState(1);
 	const [isWait, setIsWait] = useState(false);
 
 	const getData = (page?: number) => {
+		setIsWait(true);
 		API.get({
-			endpoint: 'movie',
-			getParams: `?page=${page ?? 1}`,
+			endpoint: 'movies',
+			getParams: `?page=${page ?? 1}&limit=50`,
 			success: ({data}) => {
 				setFilms(data?.docs ?? []);
 				if (data?.pages && data.page) {
-					setPageInfo({
-						max: data.pages - 1,
-						current: data.page
-					})
+					setCurrentPage(data.page);
+					setMaxPage(data.pages);
 				}
 			},
 			error: (e) => {
@@ -37,14 +34,11 @@ const Home = () => {
 		})
 	}
 
-	const getDataByPage = (page: number) => {
-		if (page !== pageInfo.current) {
-			getData(page)
-		}
-	}
+	useEffect(() => {
+		getData(currentPage);
+	}, [currentPage]);
 
 	useEffect(() => {
-		setIsWait(true);
 		getData();
 	}, []);
 
@@ -55,7 +49,7 @@ const Home = () => {
 				:
 				<>
 					<FilmList films={films} />
-					<Pagination max={pageInfo.max} current={pageInfo.current} onChange={getDataByPage} />
+					<Pagination max={maxPage} current={currentPage} onChange={setCurrentPage} />
 				</>
 
 			}

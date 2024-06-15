@@ -13,6 +13,7 @@ import type { TTheme } from "./types";
 import Header from "@components/Header";
 import Home from "@pages/Home";
 import Favorites from "@pages/Favorites";
+import Film from "@pages/Film";
 
 interface IThemeContextProps {
 	theme: TTheme,
@@ -39,7 +40,7 @@ const App = () => {
 				<Routes>
 					<Route path='/' element={<Home/>} />
 					<Route path='/favorites' element={<Favorites/>} />
-					<Route path='/film/:id' element={<Favorites/>} />
+					<Route path='/film/:id' element={<Film/>} />
 				</Routes>
 			</BrowserRouter>
 			</ThemeContext.Provider>

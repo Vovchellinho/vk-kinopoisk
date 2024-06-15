@@ -7,7 +7,7 @@ const FilmCard = ({id, name, alternativeName, year, poster, rating}: TMovie) => 
 	const navigate = useNavigate();
 
 	const handleClickFilm = () => {
-		navigate({ pathname: `/film/${id}`});
+		navigate({pathname: `/film/${id}`});
 	};
 
 	return (

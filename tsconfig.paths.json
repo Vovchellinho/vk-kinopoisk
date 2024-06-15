@@ -9,6 +9,7 @@
 			"@icons/*": ["./src/assets/icons/*"],
 			"@UI/*": ["./src/UI/*"],
 			"@API/*": ["./src/API/*"],
+			"@store/*": ["./src/store/*"],
 			"@src/*": ["./src"]
 		}
 	}
