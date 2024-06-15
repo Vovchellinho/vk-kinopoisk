@@ -15,7 +15,7 @@ const FilmCard = ({id, name, alternativeName, year, poster, rating}: TMovie) => 
 			<div className={styles.posterContainer}>
 				<img alt={`Постер для фильма ${name ?? alternativeName}`} className={styles.poster + (typeof poster?.previewUrl === 'string' ? '' : (' ' + styles.no_image))} src={poster?.previewUrl ?? NoImage} />
 			</div>
-			<span>{name ?? alternativeName}</span>
+			<h2>{name ?? alternativeName}</h2>
 			<span>Рейтинг: {rating.imdb === 0 ? 'н/д' : rating.imdb}</span>
 			<span>{year}</span>
 		</div>

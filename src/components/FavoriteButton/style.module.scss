@@ -1,0 +1,14 @@
+.container {
+	background-color: var(--button-color);
+	color: var(--button-text);
+	padding: 10px;
+	border-radius: 20px;
+	transition: color 0.4s, background-color 0.4s;
+	border: 1px solid var(--button-color);
+	cursor: pointer;
+
+	&:hover {
+		background-color: var(--hover-button-color);
+		color: var(--hover-button-text);
+	}
+}

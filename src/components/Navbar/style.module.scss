@@ -3,23 +3,33 @@
 .container {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	width: 100%;
+	max-width: 1050px;
 	height: 50px;
 	padding: 10px;
 	font-size: 20px;
-	
-	.links {
+
+	& > div {
 		display: flex;
 		align-items: center;
-		gap: 20px;
+		justify-content: space-between;
+		width: 100%;
 
-		a {
-			transition: color 0.4s;
-			color: var(--link-color);
-
-			&.active{
-				border-bottom: 1px solid var(--link-color);
+		.links {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+	
+			a {
+				transition: color 0.4s;
+				color: var(--link-color);
+	
+				&.active{
+					border-bottom: 1px solid var(--link-color);
+				}
 			}
 		}
 	}
+	
+	
 }

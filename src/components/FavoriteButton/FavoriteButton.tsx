@@ -2,6 +2,7 @@ import type { TMovie } from "@API/types";
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import favoritesStore from "@store/favorites-store";
+import styles from "./style.module.scss";
 
 interface IFavoriteButtonProps {
 	movie: TMovie;
@@ -29,7 +30,7 @@ const FavoriteButton = observer(({movie}: IFavoriteButtonProps) => {
 	}, [movie.id]);
 
 	return (
-		<div onClick={handleOnClick}>
+		<div className={styles.container} onClick={handleOnClick}>
 			{ isLiked ? <span>
 				Удалить из избранного
 			</span> : <>

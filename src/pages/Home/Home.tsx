@@ -31,16 +31,13 @@ const Home = () => {
 			},
 			complete: () => {
 				setIsWait(false);
+				window.scrollTo({ 
+					top: 0, 
+					behavior: "smooth" 
+				});
 			}
 		})
 	}
-
-	useEffect(() => {
-		window.scrollTo({ 
-			top: 0, 
-			behavior: "smooth" 
-		});
-	}, [isWait]);
 
 	useEffect(() => {
 		getData(currentPage);
