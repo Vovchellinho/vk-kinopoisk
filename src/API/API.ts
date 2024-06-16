@@ -18,19 +18,19 @@ class API {
 		this.cacheGet.clear();
 	}
 
-	public async get<K extends keyof TMapDataEndpoint>({headers, endpoint, getParams = '', success, error, complete, cache = true}: TGetParams<K>) {
+	public async get<K extends keyof TMapDataEndpoint>({headers, endpoint, version = 'v1.4', getParams = '', success, error, complete, cache = true}: TGetParams<K>) {
 		let result: TDataResult<TMapDataEndpoint[K]> = {
 			data: null,
 			isError: false,
 			error: null
 		};
-		const cacheData = this.cacheGet.get(endpoint + getParams) as TMapDataEndpoint[K];
+		const cacheData = this.cacheGet.get(version + '/' + endpoint + getParams) as TMapDataEndpoint[K];
 		if (cache && cacheData) {
 				result.data = cacheData;
 				success(result);
 		} else {
 			try {
-				const response = await fetch(this.host + MapEndpoint[endpoint] + getParams, {
+				const response = await fetch(this.host + version + '/' + MapEndpoint[endpoint] + getParams, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json;charset=utf-8',

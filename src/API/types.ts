@@ -4,9 +4,12 @@ export type TDataResult<T> = {
 	isError: boolean;
 }
 
+export type TApiVersion = 'v1.4' | 'v1';
+
 export type TQuery<K extends keyof TMapDataEndpoint> = {
 	endpoint: K;
 	headers?: {};
+	version?: TApiVersion;
 	getParams?: string;
 	cache?: boolean;
 	success: (e: TSuccess<K>) => void;
@@ -27,11 +30,13 @@ export type TGetParams<K extends keyof TMapDataEndpoint> = TQuery<K>;
 export type TMapDataEndpoint = {
 	'movies': TMovies;
 	'movie': TMovie;
+	'genres': TGenre[];
 }
 
 export const MapEndpoint = {
 	'movies': 'movie',
-	'movie': 'movie'
+	'movie': 'movie',
+	'genres': 'movie/possible-values-by-field?field=genres.name'
 }
 
 export type TWithPaginate = {
@@ -101,6 +106,7 @@ export type TBackdrop = {
 
 export type TGenre = {
 	name: string;
+	slug: string;
 }
 
 export type TCountry = {

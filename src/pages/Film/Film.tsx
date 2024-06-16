@@ -25,7 +25,7 @@ const Film = () => {
 					}
 				},
 				error: (e) => {
-					console.log(e)
+					console.error(e)
 				},
 				complete: () => {
 					setIsWait(false);

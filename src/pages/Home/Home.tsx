@@ -8,6 +8,7 @@ import Pagination from "@UI/Pagination";
 import FilmList from "@components/FilmList";
 import styles from "./style.module.scss";
 import Preloader from "@UI/Preloader";
+import FilterBlock from "@components/FilterBlock";
 
 const Home = () => {
 	const [films, setFilms] = useState<TMovie[]>([]);
@@ -50,6 +51,7 @@ const Home = () => {
 	return (
 		<section>
 			<div className={styles.container}>
+				<FilterBlock />
 				<Preloader wait={isWait}>
 					<FilmList films={films} />
 				</Preloader>

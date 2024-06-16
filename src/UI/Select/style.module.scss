@@ -1,0 +1,17 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	width: 100px;
+	height: 200px;
+	overflow-y: scroll;
+	width: 200px;
+    height: 200px;
+	color: var(--text-color);
+
+	& >label {
+		display: flex;
+		flex-direction: row;
+		gap: 5px;
+	}
+}
