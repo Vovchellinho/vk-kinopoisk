@@ -10,10 +10,10 @@ import {
 } from "react-router-dom";
 import styles from "./style.module.scss";
 import type { TTheme } from "./types";
-import Header from "@components/Header";
 import Home from "@pages/Home";
 import Favorites from "@pages/Favorites";
 import Film from "@pages/Film";
+import Layout from "./Layout";
 
 interface IThemeContextProps {
 	theme: TTheme,
@@ -26,7 +26,7 @@ export const ThemeContext = createContext<IThemeContextProps>({
 });
 
 const App = () => {
-	const [theme, setTheme] = useState<TTheme>("dark");
+	const [theme, toggleTheme] = useState<TTheme>("dark");
 
 	useEffect(() => {
 		document.documentElement.setAttribute("data-theme", theme);
@@ -34,13 +34,14 @@ const App = () => {
 
 	return (
 		<div className={styles.app}>
-			<ThemeContext.Provider value={{theme, toggleTheme: setTheme}}>
+			<ThemeContext.Provider value={{theme, toggleTheme}}>
 			<BrowserRouter>
-				<Header />
 				<Routes>
-					<Route path='/' element={<Home/>} />
-					<Route path='/favorites' element={<Favorites/>} />
-					<Route path='/film/:id' element={<Film/>} />
+					<Route path="/" element={<Layout />}>
+						<Route index element={<Home/>} />
+						<Route path='favorites' element={<Favorites/>} />
+						<Route path='film/:id' element={<Film/>} />
+					</Route>
 				</Routes>
 			</BrowserRouter>
 			</ThemeContext.Provider>
