@@ -4,4 +4,7 @@
 	justify-content: space-around;
 	background-color: var(--nav-color);
 	transition: color 0.4s, background-color 0.4s;
+	position: sticky;
+	z-index: 2;
+	top: 0;
 }
