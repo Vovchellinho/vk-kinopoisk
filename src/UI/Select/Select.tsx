@@ -3,6 +3,8 @@ import {
 	useEffect
 } from "react";
 import styles from "./style.module.scss";
+import Input from "@UI/Input";
+import Spinner from "@UI/Spinner";
 
 interface ISelectProps {
 	options: string[];
@@ -24,17 +26,19 @@ const Select = ({options, onChange}: ISelectProps) => {
 
 	return (
 		<div className={styles.container}>
-			{options.map((option, index) => (
-				 <label key={option + '-' + index}>
-					<input
-						type="checkbox"
-						value={options.at(index)}
-						checked={selectedOptions.includes(option)}
-						onChange={handleCheckboxChange}
-					/>
-				 	{option}
-			   </label>
-			))}
+			{ options ? <>
+				{options.map((option, index) => (
+					<label key={option + '-' + index}>
+						<Input
+							type="checkbox"
+							value={options.at(index)}
+							checked={selectedOptions.includes(option)}
+							onChange={handleCheckboxChange}
+						/>
+						<span className={styles.titleOption}>{option}</span>
+					</label>
+				))}
+			</> : <Spinner/>}
     	</div>
 	);
 };

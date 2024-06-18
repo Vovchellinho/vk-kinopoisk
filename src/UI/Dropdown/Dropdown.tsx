@@ -2,7 +2,10 @@ import {
 	useState,
 	useRef,
 	useEffect,
-	type ReactNode
+	type ReactNode,
+	type FocusEvent,
+	forwardRef,
+	useImperativeHandle
 } from 'react';
 import styles from "./style.module.scss";
 
@@ -11,7 +14,11 @@ interface IDropdownProps {
 	children: ReactNode;
 }
 
-const Dropdown = ({ title, children }: IDropdownProps) => {
+export interface IDropdownRef {
+	hide: () => void;
+}
+
+const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(({ title, children }, ref) => {
 	const [isOpened, setIsOpened] = useState(false);
 	const [height, setHeight] = useState(0);
 	const contentRef = useRef<HTMLDivElement>(null);
@@ -20,6 +27,16 @@ const Dropdown = ({ title, children }: IDropdownProps) => {
 		setIsOpened((prev) => !prev);
 	};
 
+	const handleOnBlur = (e: FocusEvent<HTMLDivElement>) => {
+		if (e.nativeEvent.relatedTarget === null) {
+			setIsOpened(false);
+		}
+	}
+
+	const hide = () => {
+		setIsOpened(false);
+	}
+
 	useEffect(() => {
 		if (!contentRef.current) return;
 		if (isOpened) {
@@ -27,12 +44,18 @@ const Dropdown = ({ title, children }: IDropdownProps) => {
 			contentRef.current.classList.remove(styles.closed);
 		} else {
 			setHeight(0);
-			contentRef.current.classList.add(styles.closed);
+			setTimeout(() => {
+				contentRef.current?.classList.add(styles.closed);
+			}, 300)
 		}
 	}, [isOpened]);
 
+	useImperativeHandle(ref, () => ({
+		hide
+	}));
+
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} onBlur={handleOnBlur} tabIndex={0}>
 			<div className={styles.title} onClick={toggleOpen}>
 				{title}
 			</div>
@@ -41,6 +64,6 @@ const Dropdown = ({ title, children }: IDropdownProps) => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default Dropdown;

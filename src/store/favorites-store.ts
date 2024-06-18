@@ -31,5 +31,5 @@ class FavoritesStore {
 		localStorage.setItem('favorites', JSON.stringify(this.favorites));
 	}
 }
-
-export default new FavoritesStore();
+const favoritesStore = new FavoritesStore();
+export default favoritesStore;

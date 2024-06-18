@@ -10,5 +10,10 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 5px;
+
+		& > span{
+			color: var(--extra-text-color);
+			transition: color 0.4s;
+		}
 	}
 }

@@ -1,12 +1,21 @@
-import API from "@API/index";
 import Genres from "./Genres";
 import RangeInput from "@components/RangeInput";
 import type { TRange } from "@components/RangeInput/RangeInput";
-import { useState } from "react";
+import {
+	useState,
+	useRef
+} from "react";
 import styles from "./style.module.scss";
 import Dropdown from "@UI/Dropdown";
+import type { IDropdownRef } from "@UI/Dropdown/Dropdown";
+import Button from "@UI/Button";
 
-const FilterBlock = () => {
+interface IFilterBlockProps {
+	onSearch: (query: string) => void;
+}
+
+const FilterBlock = ({onSearch}: IFilterBlockProps) => {
+	const dropdownRef = useRef<IDropdownRef>(null);
 	const [genres, setGenres] = useState<string[]>([]);
 	const [yearRange, setYearRange] = useState<TRange>();
 	const [ratingRange, setRatingRange] = useState<TRange>();
@@ -26,41 +35,22 @@ const FilterBlock = () => {
 		const genresString = getGenresQuery();
 		const ratingString = `rating.imdb=${ratingRange?.min}-${ratingRange?.max}`;
 		const query = `&selectFields=&${[yearString, ratingString].join('&') + (genresString ? '&' + genresString : '')}`
-
-		API.get({
-			endpoint: 'movies',
-			getParams: `?page=${1}&limit=50${query}`,
-			success: ({data}) => {
-				console.log(data)
-				// setFilms(data?.docs ?? []);
-				// if (data?.pages && data.page) {
-				// 	setCurrentPage(data.page);
-				// 	setMaxPage(data.pages);
-				// }
-			},
-			error: (e) => {
-			},
-			complete: () => {
-				// setIsWait(false);
-				// window.scrollTo({ 
-				// 	top: 0, 
-				// 	behavior: "smooth" 
-				// });
-			}
-		})
+		
+		if (dropdownRef.current) {
+			dropdownRef.current.hide()
+		}
+		onSearch(query);
 	};
 
 	return (
-		<Dropdown title={'Фильтры'}>
+		<Dropdown title={'Фильтры'} ref={dropdownRef}>
 			<div className={styles.container}>
 				<Genres onChange={setGenres} />
 				<div className={styles.rangesBlock}>
 					<RangeInput min={1900} defaultMinValue={2012} max={2024} onChange={setYearRange} name={'Год премьеры'}/>
 					<RangeInput min={0} max={10} onChange={setRatingRange} name={'Рейтинг'}/>
 				</div>
-				<div onClick={onSubmit}>
-					Найти
-				</div>
+				<Button value="Найти" onClick={onSubmit} />
 			</div>
 		</Dropdown>
 	);

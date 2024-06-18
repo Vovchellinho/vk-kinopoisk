@@ -12,6 +12,7 @@ import FilterBlock from "@components/FilterBlock";
 
 const Home = () => {
 	const [films, setFilms] = useState<TMovie[]>([]);
+	const [filterQuery, setFilterQuery] = useState('');
 	const [currentPage, setCurrentPage] = useState(1);
 	const [maxPage, setMaxPage] = useState(1);
 	const [isWait, setIsWait] = useState(false);
@@ -20,7 +21,7 @@ const Home = () => {
 		setIsWait(true);
 		API.get({
 			endpoint: 'movies',
-			getParams: `?page=${page ?? 1}&limit=50`,
+			getParams: `?page=${page ?? 1}&limit=50${filterQuery}`,
 			success: ({data}) => {
 				setFilms(data?.docs ?? []);
 				if (data?.pages && data.page) {
@@ -29,6 +30,7 @@ const Home = () => {
 				}
 			},
 			error: (e) => {
+				console.error(e)
 			},
 			complete: () => {
 				setIsWait(false);
@@ -40,9 +42,18 @@ const Home = () => {
 		})
 	}
 
+	const handleSearch = (query: string) => {
+		setFilterQuery(query);
+	}
+
 	useEffect(() => {
 		getData(currentPage);
 	}, [currentPage]);
+
+	useEffect(() => {
+		setCurrentPage(1);
+		getData(1)
+	}, [filterQuery]);
 
 	useEffect(() => {
 		getData();
@@ -51,7 +62,7 @@ const Home = () => {
 	return (
 		<section>
 			<div className={styles.container}>
-				<FilterBlock />
+				<FilterBlock onSearch={handleSearch} />
 				<Preloader wait={isWait}>
 					<FilmList films={films} />
 				</Preloader>

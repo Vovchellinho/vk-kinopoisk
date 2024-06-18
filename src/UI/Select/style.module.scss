@@ -2,16 +2,27 @@
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
-	width: 100px;
-	height: 200px;
-	overflow-y: scroll;
 	width: 200px;
-    height: 200px;
+	height: 175px;
+	overflow-y: scroll;
 	color: var(--text-color);
+	transition: color 0.4s;
 
-	& >label {
+	&>label {
 		display: flex;
 		flex-direction: row;
 		gap: 5px;
+		cursor: pointer;
+		user-select: none;
+
+		&:hover {
+			text-decoration: underline;
+			text-decoration-color: var(--extra-text-color);
+		}
+
+		.titleOption {
+			color: var(--extra-text-color);
+			transition: color 0.4s;
+		}
 	}
 }

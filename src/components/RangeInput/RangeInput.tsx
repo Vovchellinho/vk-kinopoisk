@@ -5,6 +5,7 @@ import {
 	useRef
 } from "react";
 import styles from "./style.module.scss";
+import Input from "@UI/Input";
 
 export type TRange = {
 	min: number;
@@ -92,9 +93,9 @@ const RangeInput = ({min, max, onChange, name = '', defaultMinValue, defaultMaxV
 			<label className={styles.label}>
 				{name && <span>{name}</span>}
 				<div>
-					<input value={minimum} onChange={handleChangeMinimum} type='number' min={min} max={max} ref={minimumInputRef} />
+					<Input value={minimum} onChange={handleChangeMinimum} type='number' min={min} max={max} ref={minimumInputRef} />
 					<span>-</span>
-					<input value={maximum} onChange={handleChangeMaximum} type='number' min={min} max={max} ref={maximumInputRef} />
+					<Input value={maximum} onChange={handleChangeMaximum} type='number' min={min} max={max} ref={maximumInputRef} />
 				</div>
 			</label>
 		</div>

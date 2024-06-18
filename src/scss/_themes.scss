@@ -12,6 +12,8 @@ html[data-theme="dark"] {
 	--button-text: #{$dark-button-text};
 	--hover-button-color: #{$dark-hover-button-color};
 	--hover-button-text: #{$dark-hover-button-text};
+	--button-extra-color: #{$dark-hover-button-color};
+	--hover-button-extra-color: #{$dark-button-color};
 
 	--input-color: #{$dark-input-color};
 	--input-text: #{$dark-input-text};

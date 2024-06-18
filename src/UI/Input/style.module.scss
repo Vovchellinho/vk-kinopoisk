@@ -1,0 +1,10 @@
+.container {
+	outline: none;
+	border: 1px solid black;
+	text-align: center;
+	padding: 5px;
+	background-color: var(--input-color);
+	color: var(--input-text);
+	transition: background-color 0.4s, color 0.4s;
+	font-size: 16px;
+}
