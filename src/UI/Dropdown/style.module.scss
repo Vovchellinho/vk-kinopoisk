@@ -1,0 +1,30 @@
+.container {
+	position: relative;
+	height: 30px;
+	color: var(--text-color);
+	background: var(--nav-color);
+
+	.title {
+		cursor: pointer;
+		font-weight: bold;
+		height: 30px;
+		line-height: 30px;
+	}
+
+	.content {
+		position: absolute;
+		z-index: 1;
+    	width: 100%;
+		background: var(--nav-color);
+		top: 30px;
+		left: 0;
+		transition: max-height 0.3s ease-in-out;
+		overflow: hidden;
+	}
+
+	.closed {
+		z-index: -1;
+		background-color: red;
+	}
+
+}

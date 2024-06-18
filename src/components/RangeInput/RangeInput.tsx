@@ -14,11 +14,13 @@ export type TRange = {
 interface IRangeInputProps extends TRange {
 	onChange: (result: TRange) => void;
 	name?: string;
+	defaultMinValue?: number;
+	defaultMaxValue?: number;
 };
 
-const RangeInput = ({min, max, onChange, name = ''}: IRangeInputProps) => {
-	const [minimum, setMinimum] = useState(min);
-	const [maximum, setMaximum] = useState(max);
+const RangeInput = ({min, max, onChange, name = '', defaultMinValue, defaultMaxValue}: IRangeInputProps) => {
+	const [minimum, setMinimum] = useState(defaultMinValue ?? min);
+	const [maximum, setMaximum] = useState(defaultMaxValue ?? max);
 	const minimumInputRef = useRef<HTMLInputElement>(null);
 	const maximumInputRef = useRef<HTMLInputElement>(null);
 
@@ -87,11 +89,13 @@ const RangeInput = ({min, max, onChange, name = ''}: IRangeInputProps) => {
 
 	return (
 		<div className={styles.container}>
-			<label>
+			<label className={styles.label}>
 				{name && <span>{name}</span>}
-				<input value={minimum} onChange={handleChangeMinimum} type='number' min={min} max={max} ref={minimumInputRef} />
-				<span>-</span>
-				<input value={maximum} onChange={handleChangeMaximum} type='number' min={min} max={max} ref={maximumInputRef} />
+				<div>
+					<input value={minimum} onChange={handleChangeMinimum} type='number' min={min} max={max} ref={minimumInputRef} />
+					<span>-</span>
+					<input value={maximum} onChange={handleChangeMaximum} type='number' min={min} max={max} ref={maximumInputRef} />
+				</div>
 			</label>
 		</div>
 	);

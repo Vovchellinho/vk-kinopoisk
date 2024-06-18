@@ -1,14 +1,12 @@
 .container {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	gap: 5px;
-	flex-direction: row;
+	justify-content: space-around;
 
-	.label {
+	.rangesBlock {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 5px;
+		justify-content: space-around;
 	}
 }

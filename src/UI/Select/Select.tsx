@@ -25,7 +25,7 @@ const Select = ({options, onChange}: ISelectProps) => {
 	return (
 		<div className={styles.container}>
 			{options.map((option, index) => (
-				 <label>
+				 <label key={option + '-' + index}>
 					<input
 						type="checkbox"
 						value={options.at(index)}
