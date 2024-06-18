@@ -1,7 +1,10 @@
 .container {
 	display: flex;
 	align-items: center;
-	height: 200px;
+	max-height: 300px;
+	gap: 10px;
+	padding: 5px;
+	flex-wrap: wrap;
 	justify-content: space-around;
 	border-radius: 0px 20px 0px 20px;
 

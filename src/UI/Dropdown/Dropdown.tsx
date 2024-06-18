@@ -40,7 +40,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(({ title, children }, 
 	useEffect(() => {
 		if (!contentRef.current) return;
 		if (isOpened) {
-			setHeight(200);
+			setHeight(300);
 			contentRef.current.classList.remove(styles.closed);
 		} else {
 			setHeight(0);

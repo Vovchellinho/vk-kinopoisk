@@ -1,4 +1,5 @@
 import {
+	useCallback,
 	useEffect,
 	useState
 } from "react";
@@ -17,7 +18,7 @@ const Home = () => {
 	const [maxPage, setMaxPage] = useState(1);
 	const [isWait, setIsWait] = useState(false);
 
-	const getData = (page?: number) => {
+	const getData = useCallback((page?: number) => {
 		setIsWait(true);
 		API.get({
 			endpoint: 'movies',
@@ -40,7 +41,7 @@ const Home = () => {
 				});
 			}
 		})
-	}
+	}, [filterQuery]);
 
 	const handleSearch = (query: string) => {
 		setFilterQuery(query);
@@ -48,16 +49,16 @@ const Home = () => {
 
 	useEffect(() => {
 		getData(currentPage);
-	}, [currentPage]);
+	}, [currentPage, getData]);
 
 	useEffect(() => {
 		setCurrentPage(1);
-		getData(1)
-	}, [filterQuery]);
+		getData(1);
+	}, [filterQuery, getData]);
 
 	useEffect(() => {
 		getData();
-	}, []);
+	}, [getData]);
 
 	return (
 		<section>

@@ -11,7 +11,6 @@ const Image = ({...props}: IImageProps) => {
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	const handleLoaded = () => {
-		console.log("Загрузилось")
 		setIsLoaded(true);
 	}
 
