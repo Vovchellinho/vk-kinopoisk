@@ -47,7 +47,7 @@ const FilterBlock = ({onSearch}: IFilterBlockProps) => {
 			<div className={styles.container}>
 				<Genres onChange={setGenres} />
 				<div className={styles.rangesBlock}>
-					<RangeInput min={1900} defaultMinValue={2012} max={2024} onChange={setYearRange} name={'Год премьеры'}/>
+					<RangeInput min={1990} max={2025} onChange={setYearRange} name={'Год премьеры'}/>
 					<RangeInput min={0} max={10} onChange={setRatingRange} name={'Рейтинг'}/>
 				</div>
 				<Button value="Найти" onClick={onSubmit} />

@@ -1,5 +1,5 @@
 import Switch from "@UI/Switch";
-import { TTheme } from "src/types";
+import type { TTheme } from "src/types";
 import { useContext } from "react";
 import { ThemeContext } from "../../App";
 import styles from "./style.module.scss";

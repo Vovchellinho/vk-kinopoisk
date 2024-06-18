@@ -1,11 +1,12 @@
 import API from "@API/index";
-import { TMovie } from "@API/types";
+import type { TMovie } from "@API/types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NoImage from "@images/no-image.png";
 import styles from "./style.module.scss";
 import FavoriteButton from "@components/FavoriteButton";
 import Preloader from "@UI/Preloader";
+import Image from "@UI/Image";
 
 const Film = () => {
 	const [movie, setMovie] = useState<TMovie>();
@@ -39,7 +40,7 @@ const Film = () => {
 				<Preloader wait={isWait}>
 					<div className={styles.container}>
 						<div className={styles.posterContainer}>
-							<img alt={`Постер для фильма ${movie.name ?? movie.alternativeName}`} className={styles.poster + (typeof movie.poster?.previewUrl === 'string' ? '' : (' ' + styles.no_image))} src={movie.poster?.previewUrl ?? NoImage} />
+							<Image alt={`Постер для фильма ${movie.name ?? movie.alternativeName}`} className={styles.poster + (typeof movie.poster?.previewUrl === 'string' ? '' : (' ' + styles.no_image))} src={movie.poster?.previewUrl ?? NoImage} />
 							<div className={styles.favoriteButton}>
 								<FavoriteButton movie={movie} />
 							</div>
