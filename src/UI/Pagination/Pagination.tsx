@@ -20,6 +20,13 @@ const Pagination = ({current, max, onChange}: IPaginationProps) => {
 		let pages: (number | string)[] = [];
 	
 		if (max <= 1) return pages;
+
+		if (max <= 10) {
+			for (let i = 1; i <= max; i++) {
+				pages.push(i);
+			}
+			return pages;
+		}
 	
 		if (current <= 4) {
 			for (let i = 1; i <= Math.min(8, max); i++) {
