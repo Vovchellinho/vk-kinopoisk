@@ -3,7 +3,8 @@ import RangeInput from "@components/RangeInput";
 import type { TRange } from "@components/RangeInput/RangeInput";
 import {
 	useState,
-	useRef
+	useRef,
+	type FormEvent
 } from "react";
 import styles from "./style.module.scss";
 import Dropdown from "@UI/Dropdown";
@@ -30,7 +31,8 @@ const FilterBlock = ({onSearch}: IFilterBlockProps) => {
 		}
 	}
 
-	const onSubmit = () => {
+	const onSubmit = (e: FormEvent) => {
+		e.preventDefault();
 		const yearString = `year=${yearRange?.min}-${yearRange?.max}`;
 		const genresString = getGenresQuery();
 		const ratingString = `rating.imdb=${ratingRange?.min}-${ratingRange?.max}`;
@@ -44,14 +46,14 @@ const FilterBlock = ({onSearch}: IFilterBlockProps) => {
 
 	return (
 		<Dropdown title={'Фильтры'} ref={dropdownRef}>
-			<div className={styles.container}>
+			<form className={styles.container} onSubmit={onSubmit}>
 				<Genres onChange={setGenres} />
 				<div className={styles.rangesBlock}>
 					<RangeInput min={1990} max={2025} onChange={setYearRange} name={'Год премьеры'}/>
 					<RangeInput min={0} max={10} onChange={setRatingRange} name={'Рейтинг'}/>
 				</div>
-				<Button value="Найти" onClick={onSubmit} />
-			</div>
+				<Button value="Найти" type='submit' />
+			</form>
 		</Dropdown>
 	);
 };

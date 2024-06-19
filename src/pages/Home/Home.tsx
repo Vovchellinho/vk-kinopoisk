@@ -65,9 +65,9 @@ const Home = () => {
 			<div className={styles.container}>
 				<FilterBlock onSearch={handleSearch} />
 				<Preloader wait={isWait}>
-					<FilmList films={films} />
+					{ films.length > 0 ? <FilmList films={films} /> : <p className={styles.emptyText}>По введенным фильтрам ничего не нашлось :(</p> }
 				</Preloader>
-				<Pagination max={maxPage} current={currentPage} onChange={setCurrentPage} />
+				{films.length > 0 && <Pagination max={maxPage} current={currentPage} onChange={setCurrentPage} /> }
 			</div>
 		</section>
 	);
